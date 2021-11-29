@@ -1,0 +1,101 @@
+<style media="screen">
+  .darkInput{
+    background: white;
+    color: black;
+    border-radius: 10px;
+    padding: 23px;
+    border: 1px solid #d3d3d3;
+    margin-top:10px;
+  }
+  .productForm {
+    padding:10px;
+    border:1px solid #d3d3d3;
+    border-radius:10px;
+    font-size:15px;
+    background:#F9F9F9;
+  }
+
+
+</style>
+
+<div class="col-md-12 ">
+
+  <h3 style="color:black;margin-bottom:30px;">Add Bill</h3>
+  <div class="form-group">
+    <label style="color:black" >contact_no</label>
+    <input type="text" class="form-control productForm" ng-model="form.contact_no" required >
+  </div>
+  <div class="form-group">
+    <label style="color:black">contact_name</label>
+    <input type="text" class="form-control productForm"  ng-model="form.contact_details" placeholder="">
+  </div>
+  <div class="form-group">
+    <label style="color:black">Discount</label>
+    <input type="number" class="form-control productForm" ng-model="form.discount" required >
+  </div>
+  <div class="form-group">
+    <label style="color:black">Amount</label>
+    <input type="number" class="form-control productForm" ng-model="form.amount" disabled >
+  </div>
+
+  <div class="form-group">
+    <label style="color:black">Date</label>
+    <div class="input-group">
+      <input type="text" class="form-control dateField"  ng-model="form.date" placeholder="" show-weeks="false" uib-datepicker-popup="dd-MMMM-yyyy" is-open="statusEnd.opened" ng-init="today">
+      <span class="input-group-btn" >
+        <button type="button" class="btn btn-default dateButton" ng-click="statusEnd.opened = true;"><i class="glyphicon glyphicon-calendar"></i></button>
+      </span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5">
+      <div class="form-group">
+        <label style="color:black">Medicine</label>
+        <input type="text" class="form-control productForm" placeholder="Search Medicine" uib-typeahead="a as a.title for a in medicineSearch($viewValue)" typeahead-on-select="medicineSelect()" ng-model="itemAdd.item" placeholder="">
+      </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label style="color:black">Quantity</label>
+          <input type="text" class="form-control productForm" ng-model="itemAdd.quantity" placeholder="" >
+        </div>
+      </div>
+      <div class="col-md-3" style="margin-top:20px;">
+        <button class="btn btn-primary" ng-click="additem()" style="background:#2471a3;color: white;border: none !important;border-radius: 64px !important;padding: 10px;width: 112px;font-size: 16px;"> Add</button>
+      </div>
+
+  </div>
+  <div class="row" ng-if="form.items.length > 0">
+  <div class="col-md-12" style="margin-top:10px;padding:0px;border-radius:0px 0px 10px 10px !important;color:white;">
+    <table class="table text-center">
+      <thead style="border-radius: 20px !important;color:black;">
+        <tr>
+          <th class="text-center">#</th>
+          <th class="text-center">Name</th>
+          <th class="text-center">Type</th>
+          <th class="text-center">Quantity</th>
+          <th class="text-center">Price</th>
+
+          <th class="text-center">ACTION</th>
+        </tr>
+      </thead>
+      <tbody style="background:white;border-radius: 20px !important;color:black">
+        <tr ng-repeat="item in form.items track by $index">
+
+          <td>{{$index + 1}}</td>
+          <td>{{item.item.title}} </td>
+          <td>{{item.item.type}} </td>
+          <td>{{item.quantity}} </td>
+          <td>{{item.itemprice}} </td>
+          <td><i class="fa fa-times"  style="color:red;" aria-hidden="true" mwl-confirm title="Approve" message="Are you sure?" confirm-text="Yes <i class='fa fa-check'></i>" cancel-text="No" on-confirm="deleteItem($index)" confirm-button-type="default"
+            cancel-button-type="default" ></i></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+
+
+
+<button class="btn btn-default btn-block" ng-click="createBill()" style="background:#461482;color:white;border: none !important;border-radius: 64px !important;padding: 17px;padding-right: 17px;padding-left: 17px;right: 59px;font-size: 16px;z-index: 10;padding-right: 30px;padding-left: 30px;margin-top:10px;">Create</button>
+</div>

@@ -1,0 +1,87 @@
+<style media="screen">
+  .employeesMenu:hover{
+    background:#4a4d53;
+  }
+</style>
+<div class="container-fluid">
+<div class="row" style="background:white;margin:0px;height:100vh !important;">
+  <div class="col-md-12" style="padding:50px;background:white;color:white;position:absolute;right:0px;height:100vh;overflow:auto;">
+    <div class="row" style="margin-bottom:20px;">
+      <div class="row">
+        <div class="col-md-2" style="position:relative;">
+          <input type="text" class="form-control" placeholder="Search with name" ng-model="selectedClinic.search" style="background:#f1f1f1;color:black;border-radius:10px;padding:23px; border:none !important;" ng-enter="allAppointments('search')">
+          <button style="position: absolute;top: 7px;right: 25px;background:#f1f1f1;border: none !important;color: black;" class="btn btn-default" type="submit" ng-click="allAppointments('search')">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </div>
+
+        <div class="col-md-1">
+          <button type="button" class="btn btn-primary btn-block" style="background:#f1f1f1;color:black;border-radius:10px !important;padding:12px; border:none !important;outline:0" ng-click="previous()">Prev</button>
+        </div>
+        <div class="col-md-1">
+          <button type="button" class="btn btn-primary btn-block" style="background:#f1f1f1;color:black;border-radius:10px !important;padding:12px; border:none !important;outline:0" ng-click="next()">Next</button>
+        </div>
+        <div class="col-md-2">
+          <span>
+            <select class="form-control " ng-model="selectedClinic.obj"  ng-change="allAppointments('a')" ng-options="i as i.name for i in ownedClinics" style="border-radius:5px !important;border:none !important;height:40px;background:#f1f1f1;color:black;">
+            </select>
+          </span>
+        </div>
+        <div class="col-md-2">
+          <div class="input-group" style="margin-top:4px;">
+            <input type="text" class="form-control dateField" ng-change="allAppointments()" placeholder="filter by date"style="background:#f1f1f1;"ng-model="selectedClinic.date" placeholder="" show-weeks="false" uib-datepicker-popup="dd-MMMM-yyyy" is-open="statusEnd3.opened" ng-init="today">
+            <span class="input-group-btn" >
+              <button type="button" class="btn btn-default dateButton" style="background:#f1f1f1;" ng-click="statusEnd3.opened = true;"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+          </div>
+        </div>
+        <div class="col-md-3 col-md-offset-1" ng-if="userData.occupation=='Doctor'">
+          <button type="button" class="btn btn-default " style="background: #082ed0;color: white;border : none !important;border-radius:10px !important;padding: 15px;width: 88%;left: 25px;font-size:16px;" ng-click="changeState()">
+              Add New Prescription <img src="/static/images/icons8-plus-48.png" style="width:25px;margin-left:10px;" alt="">
+            </button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6" ng-repeat="k in appointments" >
+    <div class="row"   style="margin-bottom:30px;margin-left:10px;background:#f1f1f1;border-radius:20px;padding:15px;color:grey;">
+      <div class="col-md-2">
+        <img ng-src="{{k.patientname.dp}}" onerror="this.src = '/static/images/img_avatar_card.png'" src="/static/images/cuo.png" class="img img-rounded" style="width:150px;height:200px;border-radius:5%">
+      </div>
+      <div class="col-md-offset-1 col-md-7" style="margin-top:10px;">
+        <h2 style="margin-top:0px;margin-bottom:10px;">{{k.username.name}}</h2>
+        <img src="/static/images/icons8-email-96.png" style="width: 25px;margin-left:5px;margin-bottom:10px;margin-right:5px;"><b>Reason :</b>{{k.ongoing_treatment}} <br>
+        <img src="/static/images/icons8-dialing-number-100.png" style="width: 35px;"> {{k.username.mobile}}
+        <h4 style="margin:0px;margin-top:10px;margin-left:10px;padding:0px;">Date:{{k.created | date}}</h4>
+        <div class="row" style="width:380px;">
+          <div class="col-md-6" ng-if="selectedClinic.obj.type=='Clinic'">
+            <h4 style="margin-top:30px !important;margin-left:10px;" ng-if="k.active">VALID :</h4>
+            <h4 style="margin-top:30px !important;margin-left:10px;" ng-if="!k.active">INVALID :</h4>
+          </div>
+          <div class="col-md-6" ng-if="selectedClinic.obj.type=='Clinic'">
+            <switch ng-model="k.active" ng-click="invalid(k)" style="margin-top:25px !important;" class="green"></switch>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-offset-3 text-center" style="margin-top:60px;">
+        <button type="button" class="btn btn-outline-dark  darkButton" name="button"  style="border-color:black !important;color:black !important;background-color:white !important;width:250px;" ng-click="stateChange(k.clinic,k.forUser,k.id)">View All</button>
+        <button type="button" class="btn btn-outline-dark  darkButton" name="button"  style="border-color:black !important;color:black !important;background-color:white !important;width:250px;" ng-click="stateChange(k.clinic,k.forUser,k.id)">Print</button>
+      </div>
+      <div class="col-md-offset-3 text-center" style="margin-top:5px;">
+        <button type="button" class="btn btn-outline-dark  darkButton" name="button"  style="border-color:black !important;color:black !important;background-color:white !important;width:250px;" ng-click="issued(k,selectedClinic.obj.clinicpk)">Issue Prescription</button>
+        <button type="button" class="btn btn-outline-dark  darkButton" name="button"  style="border-color:black !important;color:black !important;background-color:white !important;width:250px;" ng-click="CreateBill(k.id)">Create Bill</button>
+      </div>
+      </div>
+      <!-- <div class="col-md-3">
+        <div class="row">
+          <div class="col-md-12">
+            <i class="fa fa-clipboard fa-2x" style="cursor:pointer;margin-top:10%;margin-bottom:10%" ng-click="openPasskey(k.profile.pk);$event.stopPropagation()"></i>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</div>
+</div>
+</div>

@@ -1,0 +1,59 @@
+<style media="screen">
+  .darkInput{
+    background: white;
+    color: black;
+    border-radius: 10px;
+    padding: 23px;
+    border: 1px solid #d3d3d3;
+    margin-top:10px;
+  }
+  .productForm {
+    padding:10px;
+    border:1px solid #d3d3d3;
+    border-radius:10px;
+    font-size:15px;
+    background:#F9F9F9;
+  }
+
+
+</style>
+
+<div class="col-md-12 ">
+
+  <h3 style="color:black;margin-bottom:30px;">Create Appointment</h3>
+  <div class="form-group">
+    <label style="color:black" >Doctor</label>
+    <input type="text" class="form-control productForm" uib-typeahead="a as a.doctor.first_name for a in doctorSearch($viewValue)" typeahead-on-select="userOnSelect()" ng-model="form.doctor" placeholder="">
+  </div>
+  <div class="form-group">
+    <label style="color:black">Patient Contact No</label>
+    <input type="text" class="form-control productForm" uib-typeahead="a as a.mobile for a in userSearch($viewValue)" typeahead-on-select="userOnSelect()" ng-model="form.requesteduser" placeholder="">
+  </div>
+  <div class="form-group">
+    <label style="color:black">Patient Name</label>
+    <input type="text" class="form-control productForm" ng-model="form.first_name" required >
+  </div>
+
+  <div class="form-group">
+    <label>Requested Date</label>
+    <div class="input-group">
+      <input type="text" class="form-control dateField"  ng-model="form.requesteddate" placeholder="" show-weeks="false" uib-datepicker-popup="dd-MMMM-yyyy" is-open="statusEnd.opened" ng-init="today">
+      <span class="input-group-btn" >
+        <button type="button" class="btn btn-default dateButton" ng-click="statusEnd.opened = true;"><i class="glyphicon glyphicon-calendar"></i></button>
+      </span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label style="color:black" >Requested Time</label>
+    <uib-timepicker ng-model="form.requestedtime" hour-step="1" minute-step="30" show-meridian="true"></uib-timepicker>
+    </div>
+
+        <div class="form-group">
+          <label>Reason</label>
+          <textarea name="" style="width:100%"  ng-model="form.reason" class="productForm"></textarea>
+        </div>
+
+
+
+<button class="btn btn-default btn-block" ng-click="createApp()" style="background:#461482;color:white;border: none !important;border-radius: 64px !important;padding: 17px;padding-right: 17px;padding-left: 17px;right: 59px;font-size: 16px;z-index: 10;padding-right: 30px;padding-left: 30px;margin-top:10px;">Create</button>
+</div>

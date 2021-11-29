@@ -1,0 +1,24 @@
+<div class="col-md-6" ng-controller="admin.editCustomer" >
+  <h3><strong>{{mode=='new' ? 'New' : 'Edit'}} Client</strong></h3>
+  <div class="form-group" >
+    <div style="margin:30px">
+      <label class="radio-inline"><input type="radio" name="full" ng-model="newCustomer.access" value="full_access" ><span style="padding-left:10px;" >Full access</span> </label>
+      <label class="radio-inline"><input type="radio" name="full" ng-model="newCustomer.access" value="restrict_access"><span style="padding-left:10px;" > Restricted access </span></label>
+    </div>
+    <label>Username</label>
+    <input type="text" class="form-control" ng-model="newCustomer.username" required  placeholder="username">
+  </div>
+  <div class="form-group">
+    <label>First Name</label>
+    <input type="text" class="form-control" ng-model="newCustomer.first_name" required placeholder="First Name">
+  </div>
+  <div class="form-group">
+    <label>Last Name</label>
+    <input type="text" class="form-control" ng-model="newCustomer.last_name" required placeholder="Last Name">
+  </div>
+  <div class="form-group">
+    <label >Password</label>
+    <input type="password" class="form-control" ng-model="newCustomer.password" required placeholder="Password">
+  </div>
+  <button class="btn btn-primary" type="button" name="button" ng-click="createCustomer()">Save</button>
+</div>

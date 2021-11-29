@@ -1,0 +1,45 @@
+version: '3.7'
+
+services:
+  instapostgres:
+    container_name: postgres-insta
+    image: postgres
+    restart: on-failure
+#    restart: always
+    env_file:
+      - ./env/postgres.env
+    ports:
+      - "1436:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  instamini:
+    container_name: instamini
+    build:
+      context: .
+    env_file:
+      - ./env/django.env
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8001:8000"
+    restart: always
+    depends_on:
+      - instapostgres
+      - pgadmininsta
+#    command: ./start-reload.sh
+    # tty: true
+  pgadmininsta:
+    container_name: pgadmin-insta
+    image: dpage/pgadmin4
+    env_file:
+      - ./env/pgadmin.env
+    ports:
+      - "5057:80"
+    depends_on:
+      - instapostgres
+
+volumes:
+  pgdata:
+    external: true
+  

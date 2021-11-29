@@ -1,0 +1,192 @@
+<div style="cursor:pointer;">
+  <div class="productCardHover" ng-click="openDetails(list.pk,list.product.name.split(' ').join('-'))" style="margin-bottom:15px;margin-left:15px;margin-right:15px">
+    <div class="row" class="text-center" >
+      <span ng-if="selectedObj.specialOffer.length>0&&selectedObj.specialOffer!='null'" style="position:absolute;background-color:var(--themeColor);color:white; border-radius:15px 15px 15px 15px;top:86px;font-size:14px;left:30px;padding-left:15px;padding-right:15px;overflow:hidden;max-width: 28vh;height:3vh">{{selectedObj.specialOffer}}</span>
+      <span ng-if='isHeart' ng-click="wishlist();$event.stopPropagation();" style="cursor:pointer;color:#808080;position:absolute;padding-right:0px;padding-left:75%; border-radius:15px 15px 15px 15px;margin-top:83px;font-size:14px" ng-if="list.added_saved==0 && me.pk">
+        <i class="fa fa-heart  fa-2x"></i>
+      </span>
+      <span ng-click="wishlist();$event.stopPropagation();" style="cursor:pointer;color:rgb(228, 114, 114);position:absolute;padding-right:0px;padding-left:75%; border-radius:15px 15px 15px 15px;margin-top:83px;font-size:14px" ng-if="list.added_saved>0 && me.pk">
+        <i class="fa fa-heart  fa-2x"></i>
+      </span>
+      <div class="card bg-white text-center" style="padding-bottom:0px;overflow:hidden;height:40vh;">
+        <div style="height:80px;padding-top:15px">
+          <span style="margin:0px;font-size: 1.5rem;color: #666;"><b>{{list.product.name}} <span ng-if="selectedObj.qty!=1||selectedObj.unit!='Quantity'"> {{selectedObj.qty}} {{selectedObj.unit|getUnit}}</span></b></span>
+        </div>
+        <img class="img" ng-src="{{imgData}}" onerror="this.src='/static/images/ecommerce.jpg'" style="height:30vh">
+        <!-- <img style="width: 100%;" class="img" src="/static/images/ecommerce.jpg" ng-if="!imgData"> -->
+        <!-- <img style="width: 100%;" class="img" ng-src="{{imgData}}" ng-if="imgData&&list.product.displayPicture"> -->
+      </div>
+    </div>
+    <!-- <div class="row" class="text-center" ng-if="list.added_cart>0">
+      <div class="card bg-white text-center" style="padding-bottom:0px;overflow:hidden;height:40vh">
+        <div style="height:80px;padding-top:15px">
+          <span style="margin:0px;font-size: 1.5rem;color: #666;"><b>{{list.product.name}} <span ng-if="selectedObj.qty!='1'||selectedObj.unit!='Quantity'"> {{selectedObj.qty}} {{selectedObj.unit|getUnit}}</span></b></span>
+        </div>
+        <span class="fa-stack fa-5x" style="padding-top:53px">
+          <i class="fa fa-stack-2x"></i>
+          <i class="fa fa-shopping-cart fa-stack-2x fa-inverse" style="color:#c1a36f"></i>
+          <span class="badge">{{list.added_cart}}</span>
+        </span>
+      </div>
+    </div> -->
+    <div class="row">
+      <div class=" card bg-white" style="padding-bottom:0px!important">
+        <div class="row container-fluid" style="padding: 0px 15px 0px 15px;height:173px;">
+          <div class="col-md-12 col-xs-12 col-sm-12" style="height:40%;">
+            <div class="row">
+              <div class="col-md-7 col-xs-7 col-sm-7" >
+                <!-- <span style="font-size:15px;padding-left:10px;color:var(--themeColor)"  ng-if="showPrice"> Price : </span> -->
+                <!-- {{selectedObj}} -->
+                <span ng-if="list.product.serialNo==selectedObj.sku" style="padding-top:10%;">
+                  <!-- <span style="font-size:15px;"> -->
+                  <!-- <span ng-if="showPrice" class="text-muted" style="color:var(--themeColor)" >
+                   Price :
+                  </span> -->
+                  <!-- text-decoration:line-through; text-decoration-skip: ink;text-line-through-position: over -->
+                  <span ng-if="list.product.price>list.product.discount&&showPrice" style="font-size:1.2rem;color:#a2a2a2">
+                     MRP  <span style="color:#a2a2a2;"> <span  style="color:#a2a2a2"> <i class="fa {{currency}}"></i> {{(list.product.price).toFixed(2)}} </span></span>
+                  </span> </br>
+                    <span ng-if="list.product.discount==list.product.price&&showPrice" style="color:var(--themeColor);font-size:1.2rem">
+                      Happy Price  <i class="fa {{currency}} "></i> {{(list.product.price).toFixed(2)}}
+
+
+                    </span>
+                  <!-- </span> -->
+
+                  <span ng-if="list.product.price>list.product.discount&&showPrice" style="color:var(--themeColor);font-size:1.2rem">
+                    Happy Price  <i class="fa {{currency}}"></i> {{list.product.discount.toFixed(2)}}
+                  </span>
+                </span>
+
+                <span ng-if="list.product.serialNo!=selectedObj.sku && selectedObj.amnt != selectedObj.discount && showPrice" style="font-size:1.2rem;color:#000000">
+                  <!-- <span ng-if=" showPrice" class="text-muted "style="color:var(--themeColor);">
+                      Price:
+                  </span> -->
+                  <span style="color:#a2a2a2"> MRP  <span style='color:#a2a2a2;'> <span  style="color:#a2a2a2"> <i class="fa {{currency}}"></i> {{(selectedObj.amnt).toFixed(2)}} </span> </span>
+                </span> <br/>
+                <span ng-if="list.product.serialNo!=selectedObj.sku && selectedObj.amnt == selectedObj.disc && showPrice" style="color:var(--themeColor);font-size:1.2rem">
+                  Happy Price    <i class="fa {{currency}}"></i> {{(selectedObj.amnt).toFixed(2)}}
+                </span>
+
+                <span ng-if="list.product.serialNo!=selectedObj.sku && selectedObj.amnt != selectedObj.discount && showPrice" style="color:var(--themeColor);font-size:1.2rem">
+                   Happy Price  <i class="fa {{currency}}"></i> {{(selectedObj.discount).toFixed(2)}}
+                </span>
+              </div>
+              <div class="col-md-5 hidden-xs hidden-sm text-center" ng-if="selectedObj.discount!=selectedObj.amnt&&showPrice" style="padding:5px;">
+                <div class="discount_box">
+                  <p style="font-size:1.2rem;line-height: 1.7;" > <span style="color:#000000!important"> Save </span>  <br/>
+                  <span style="color:#eb1515!important"> <strong>  <i class="fa {{currency}}"></i> {{(selectedObj.amnt-selectedObj.discount).toFixed(2)}} </strong></span>
+                  </p>
+                </div>
+              </div>
+              <div class="hidden-md hidden-lg col-xs-5 col-sm-5 text-center" ng-if="selectedObj.discount!=selectedObj.amnt&&showPrice" style="padding:5px">
+                <div class="discount_box_mobile">
+                  <p style="font-size:1.2rem;line-height: 1.7;" >  <span style="color:#000000!important"> Save </span> <br/>
+                  <span style="color:#eb1515!important"> <strong>
+                 <i class="fa {{currency}}"></i> {{(selectedObj.amnt-selectedObj.discount).toFixed(2)}} </strong> </span>
+                </p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div style="height:40px;padding-left: 10px;padding-right: 10px; display:flex;" >
+            <span ng-show="prodVarList.length>1" style="flex:50% ;">
+              <select class="form-control" ng-click="$event.stopPropagation();" style="border:2px solid var(--themeColor);padding-left:5px" ng-options="pv.str for pv in prodVarList" ng-model="selectedProdVar.toWatch">
+              </select>
+            </span>
+            <span ng-show="prodVarList.length==1" style="flex:50% ;">
+              <input type="text" class="form-control" placeholder="" ng-model="defaultValue" style="border:2px solid var(--themeColor);padding-left:10px"  disabled/>
+            </span>
+            <span ng-show="prodVarListColors.length>0" style="flex:50%">
+              <select class="form-control" style="border:1px solid #eee;padding-left:5px" ng-click="$event.stopPropagation();" ng-options="c.prodDesc for c in prodVarListColors" ng-model="selectedColor.toWatch">
+              </select>
+            </span>
+          </div>
+          <div>
+            <div style="padding:10px 10px 0px 10px;margin:0px;height:55px" ng-if="list.added_cart==0&&me.pk&&selectedObj.inStock>0">
+              <div class="row">
+                <div class="col-xs-8" style="padding-right:0px;">
+                  <div class="input-group qtyInputGrp" ng-click="$event.stopPropagation();">
+                    <span class="input-group-addon qtyBtn" style=" background-color:var(--themeColor); color:#ffffff;">Qty</span>
+                    <!-- <input type="text" class="form-control qtyText" placeholder="Qty" ng-model="qtyToAddInit.qty"> -->
+                      <select class="form-control" ng-click="$event.stopPropagation();" style="border:2px solid var(--themeColor);text-align:center" ng-options="i for i in orderThrList" ng-model="qtyToAddInit.qty">
+                      </select>
+                  </div>
+                </div>
+                <div class="col-xs-4" style="padding-left:10px;" ng-click="addToCart();$event.stopPropagation();">
+                  <button type="button" class="btn btn-default btn-sm" style="height:38px; background-color:var(--themeColor); color:#ffffff; border-radius:5px;width:100%">
+                    Add <i class="fa fa-shopping-cart"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div style=" padding:10px 10px 10px 10px;margin:0px;height:60px" ng-if="list.added_cart==0 && !me.pk && selectedObj.inStock>0">
+
+              <div class="row">
+                <div class="col-xs-8" style="padding-right:0px;">
+                  <div class="input-group qtyInputGrp" ng-click="$event.stopPropagation();">
+                    <span class="input-group-addon qtyBtn"  style=" background-color:var(--themeColor); color:#ffffff;">Qty</span>
+                    <select class="form-control" ng-click="$event.stopPropagation();" style="border:2px solid var(--themeColor);text-align:center" ng-options="i for i in orderThrList" ng-model="qtyToAddInit.qty">
+                    </select>
+                    <!-- <input type="text" class="form-control qtyText" placeholder="Qty" ng-model="qtyToAddInit.qty"> -->
+                  </div>
+                </div>
+                <div class="col-xs-4" style="padding-left:10px;" ng-click="createCookieDetail();$event.stopPropagation();">
+                  <button type="button" class="btn btn-default btn-sm" style="height:38px;width:100%; background-color:var(--themeColor); color:#ffffff; border-radius:5px;">
+                    Add <i class="fa fa-shopping-cart"></i>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+            <div style="color:#808080; padding:10px 10px 10px 10px;margin:0px;height:60px" ng-if="list.added_cart>0 && me.pk && selectedObj.inStock>0">
+
+              <div class="row" style="padding:0px 15px;">
+                <div class="col-xs-2" style="padding:0px;">
+                  <button type="button" class="btn btn-default decrementBtn" ng-if="list.added_cart>0&&me.pk" ng-click="decrement();$event.stopPropagation()">
+                    <i class="fa fa-minus" style="font-size:14px;"></i>
+                  </button>
+                </div>
+                <div class="col-xs-8" style="padding:0px;">
+                  <button type="button" name="button" class="inCartBtn btn btn-sm btn-default" ng-click="$event.stopPropagation()">
+                    {{list.added_cart}} in Cart
+                  </button>
+                </div>
+                <div class="col-xs-2" style="padding:0px;">
+                  <button type="button" class="btn btn-default incrementBtn" ng-click="increment();$event.stopPropagation()">
+                    <i class="fa fa-plus" style="font-size:14px;"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div style=" padding:10px 10px 10px 10px;margin:0px;" ng-if="selectedObj.inStock<=0||!selectedObj.inStock">
+              <span style="font-size:18px;color:#ef4a1e">Out Of Stock</span>
+            </div>
+            <div style="color:#808080; padding:10px 10px 10px 10px;margin:0px;height:60px" ng-if="list.added_cart>0 && !me.pk && selectedObj.inStock>0">
+
+              <div class="row" style="padding:0px 15px;">
+                <div class="col-xs-2" style="padding:0px;">
+                  <button type="button" class="btn btn-default decrementBtn" ng-if="!me.pk" ng-click="decrementCookie();$event.stopPropagation()">
+                    <i class="fa fa-minus" style="font-size:14px;"></i>
+                  </button>
+                </div>
+                <div class="col-xs-8" style="padding:0px;">
+                  <button type="button" name="button" class="inCartBtn btn btn-sm btn-default" ng-click="$event.stopPropagation()">
+                    {{list.added_cart}} in Cart
+                  </button>
+                </div>
+                <div class="col-xs-2" style="padding:0px;">
+                  <button type="button" class="btn btn-default incrementBtn" ng-click="incrementCookie();$event.stopPropagation()">
+                    <i class="fa fa-plus" style="font-size:14px;"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

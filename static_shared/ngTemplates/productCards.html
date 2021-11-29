@@ -1,0 +1,177 @@
+<div>
+<style media="screen">
+
+.overon {
+  transition: box-shadow 200ms;
+  left: 10%;
+  border-radius: 5px;
+  width: 80% !important;
+  background:transparent;
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  height: 275px;
+
+}
+
+.overon:hover {
+  box-shadow: -3px 0px 8px 6px rgba(0, 0, 0, 0.09);
+  background: transparent;
+  z-index: 9999999999999999999;
+}
+
+.overon>.btn {
+  display: none;
+}
+
+.overon:hover .btn {
+  display: inline;
+
+}
+
+.overon:hover .colorchoice {
+  display: inline !important;
+
+}
+
+.overon>.fa {
+  display: none;
+}
+
+.overon:hover .fa {
+  display: inline;
+
+}
+.wishlist_new {
+  display: none;
+  animation: fadeIn ease 0.5s;
+-webkit-animation: fadeIn ease 0.5s;
+-moz-animation: fadeIn ease 0.5s;
+-o-animation: fadeIn ease 0.5s;
+-ms-animation: fadeIn ease 0.5s;
+transform: translate(30%,-35%);
+}
+.overon:hover .wishlist_new {
+  display: block;
+
+}
+
+.overon .cart_btn {
+  display: none;
+}
+
+.overon:hover .showValue{
+    display: inline;
+}
+
+
+.overon:hover .cart_btn{
+  display: inline;
+
+}
+
+.overon .showValue{
+  display:none
+}
+.pricetag{
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+  color: white;
+}
+.overon:hover .pricetag{
+  transform: translate(-55%,-40%);
+}
+.overon:hover .holdthis{
+  transform: translate(-35%,-35%);
+}
+@media only screen and (max-width:480px) {
+  .overon {
+    box-shadow: -3px 0px 8px 6px rgba(0, 0, 0, 0.09);
+    background: transparent;
+    z-index: 9999999999999999999;
+    transition: box-shadow 200ms;
+    left: 10%;
+    border-radius: 5px;
+    width: 80% !important;
+    background:transparent;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 275px;
+  }
+
+  .overon>.btn {
+    display: inline;
+  }
+  .overon .btn {
+    display: inline;
+
+  }
+  .overon .fa {
+    display: inline;
+
+  }
+  .overon .wishlist_new {
+    display: block;
+
+  }
+  .overon .cart_btn {
+    display: inline;
+  }
+
+  .overon .showValue{
+      display: inline;
+  }
+  .overon .cart_btn{
+    display: inline;
+
+  }
+  .overon .showValue{
+    display:inline
+  }
+  .overon .pricetag{
+    transform: translate(-35%,-35%);
+  }
+}
+
+</style>
+
+
+
+<div class="" ng-click="openDetails(list.pk,list.name.split(' ').join('-'))"  style="height:auto">
+ <div class="text-center mediaformobilenext_specificpage">
+    <img ng-src="/media/{{list.image}}" ng-if="list.image" alt="" style="width:130px;height: 140px;margin:auto;margin-top: 40px;">
+    <img ng-src="{{list.images[0].attachment}}" ng-if="!list.image" alt="" style="width:130px;height: 140px;margin:auto;margin-top: 40px;">
+    <!-- <span> <strike><i class="fa {{currency}}"></i>{{(list.product.price).toFixed(2)}}</strike></span>
+    <span ng-if="list.product.price>list.product.discount&&showPrice"> <i class="fa {{currency}}"></i>{{list.product.discount.toFixed(2)}}</span> -->
+<div class="col-md-12" style="margin-top:10px;padding-left:40px;padding-right:40px;">
+  <span style="font-weight:500;font-size:16px;color:black;padding-right:10px;"><i class="fa {{currency}}"></i>{{list.sellingPrice}}</span>
+  <strike>  <span ng-if="list.price>list.sellingPrice" style="font-size:12px;"> <i class="fa {{currency}}"></i>{{(list.price)}}</span></strike>
+  <p style="overflow: hidden;white-space: nowrap;text-overflow:ellipsis;font-weight:400;color:black;" ng-if="!list.displayName">{{list.name }}</p>
+  <p style="overflow: hidden;white-space: nowrap;text-overflow:ellipsis;font-weight:400;color:black;" ng-if="list.displayName">{{list.displayName }}</p>
+</div>
+  </div>
+  <div class="overon text-center">
+
+    <div class="specificcssmainmobile" style="height:250px;">
+      <div class="col-md-12" style="margin-top:40px;">
+        <div class="col-md-6" style="padding-left:10px;">
+          <span class="text-center pricetag" ng-if="list.price && list.sellingPrice" style="width: 37px;height: 37px;background: var(--themeColor);border-radius: 50%;display: inline-block;padding-top:9px;font-size:10px;font-weight:600;">-{{((list.price-list.sellingPrice)/list.price)*100 | number:0}}%</span>
+          <span class="text-center pricetag" ng-if="!list.price || !list.sellingPrice" style="width: 37px;height: 37px;background: var(--themeColor);border-radius: 50%;display: inline-block;padding-top:9px;font-size:10px;font-weight:600;">New</span>
+          <!-- <span class="pull-left text-center pricetag" ng-if="!list.product.discount" style="width: 37px;height: 37px;background: var(--themeColor);border-radius: 50%;display: inline-block;padding-top:5px;">new</span> -->
+        </div>
+        <div class="col-md-6" ng-if="me.pk&&isHeart" style="padding-right:10px;" ng-click="wishlist();$event.stopPropagation();">
+          <span class="wishlist_new pull-right" style="cursor:pointer;"> <i class="fa fa-heart" style="color:red" ng-if="list.added_saved>0 && me.pk"> </i> <i class="fa fa-heart" ng-if="list.added_saved==0 && me.pk"> </i> </span>
+        </div>
+        <div class="pull-right" ng-show="curr_state=='adminMode'"  ng-click="$event.stopPropagation();deleteproductingroup(list.pk,ids);" class="pull-right" style="border-radius:50%;box-shadow: 0 0 0 1px rgba(0,0,0,0.04),0 4px 8px 0 rgba(0,0,0,0.20);height:30px;width:30px;cursor:pointer;margin-top:-10px;">
+          <i class="fa fa-times text-center" aria-hidden="true" style="color:black;font-size:20px;padding-top:4px;position:absolute;margin-left:-7px;"></i>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="btn" type="button" name="button" style="bottom: 0px; background-color:var(--themeColor);border: none;color:white;width: 100%;height:50px;border-radius:0px 0px 5px 5px!important;"> Add to cart</button>
+  </div>
+</div>

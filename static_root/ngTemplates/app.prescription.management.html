@@ -1,0 +1,285 @@
+<style media="screen">
+  .darkInput{
+    /* background: black; */
+    color: black;
+    border-radius: 10px;
+    padding: 23px;
+    /* border: none !important; */
+    margin-top:10px;
+  }
+  .darkInput:disabled{
+    /* background: black; */
+    color: black;
+    border-radius: 10px;
+    padding: 23px;
+    /* border: none !important; */
+    margin-top:10px;
+  }
+  #mceu_21{
+    border-width: 0px;border-radius: 10px !important;overflow: hidden !important;
+  }
+  body{
+    background:white !important;
+  }
+
+  .productForm {
+    padding:10px;
+    border-radius:10px;
+    font-size:15px;
+    background:white;
+    border: 1px solid #d3d3d3;
+  }
+  .darkButton button:hover{
+    background-color:black !important;
+  }
+</style>
+
+
+<div class="container-fluid" style="height:100vh !important;margin-left:0px !important;padding:0px !important">
+  <div class="row" >
+    <div class="col-md-12" style="margin-bottom:80px;background:white;position:absolute;right:0px;height:100vh;overflow:auto;color:black;padding-top:40px;padding-bottom:40px;">
+
+      <div class="row">
+        <div class="col-md-1">
+          <img onclick="window.history.back();" src="https://i.ya-webdesign.com/images/back-arrow-icon-png-6.png " style="width:35px;margin-left:30px" alt="">
+        </div>
+      </div>
+
+      <div class="row" style="padding-left:40px;">
+        <div class="col-md-3">
+          <h2>Your Clinic Details</h2>
+        </div>
+          <div class="col-md-4 col-md-2" style="margin-top:10px;">
+            <span>
+              <select class="form-control " ng-model="selectedClinic.obj"  ng-change="getSpecificClinic(selectedClinic.obj.clinicpk)" ng-options="i as i.name for i in ownedClinics" style="border-radius:5px !important;border:none !important;height:40px;color:white !important;background:black;">
+              </select>
+            </span>
+          </div>
+
+      </div>
+
+
+      <div class="col-md-8 col-md-offset-2">
+        <div class="row" style="padding:20px;padding-top:0px;">
+          <div class="col-md-3" style="padding-top:130px;">
+            <span style="font-size:18px;color:black;"> <img src="/static/images/icons8-information-64.png" style="width:30px;margin-right:10px;" alt=""> Logo</span>
+          </div>
+          <div class="col-md-4" style="padding-top:130px;">
+            <span>
+              <input type="file" file-model = clinic.displayPicture id="filePicker">
+            </span>
+          </div>
+          <div class="col-md-4">
+            <img  onclick="document.getElementById('filePicker').click()" style="width:150px;height:100px;" onerror="this.src='/static/images/no_tour_image.jpg'" src="{{clinic.displayPicture}}">
+          </div>
+        </div>
+
+        <div class="row" style="padding:20px;">
+          <div class="col-md-3" style="margin-top:15px;">
+            <span style="font-size:18px;color:black;"> <img src="/static/images/icons8-building-blocks-96.png" style="width:30px;margin-right:10px;" alt="">Company Name</span>
+          </div>
+          <div class="col-md-9">
+            <span>
+              <input type="text"   ng-model="clinic.companyName" class="form-control darkInput">
+            </span>
+          </div>
+        </div>
+        <div class="row" style="padding:20px;">
+          <div class="col-md-3"style="margin-top:15px;">
+            <span style="font-size:18px;color:black;">  <img src="/static/images/icons8-address-64.png" style="width:30px;margin-right:10px;" alt=""> Address</span>
+          </div>
+          <div class="col-md-9">
+            <span>
+              <textarea name="name" ng-model="clinic.address"  style="width:100%;height:100px;"  class="productForm"></textarea>
+            </span>
+          </div>
+        </div>
+        <div class="row" style="padding:20px;">
+          <div class="col-md-3"style="margin-top:15px;">
+            <span style="font-size:18px;color:black;"> <img src="/static/images/icons8-website-64.png" style="width:30px;margin-right:10px;" alt=""> Pincode</span>
+          </div>
+          <div class="col-md-9">
+            <span>
+              <input type="text" ng-model="clinic.pincode" class="form-control darkInput">
+            </span>
+          </div>
+        </div>
+
+        <div class="row" style="padding:20px;">
+          <div class="col-md-3"style="margin-top:15px;">
+            <span style="font-size:18px;color:black;">  <img src="/static/images/icons8-accounting-64.png" style="width:30px;margin-right:10px;" alt=""> City</span>
+          </div>
+          <div class="col-md-9">
+            <span>
+              <input type="text" ng-model="clinic.city"  class="form-control darkInput">
+            </span>
+          </div>
+        </div>
+
+        <div class="row" style="padding:20px;">
+          <div class="col-md-3"style="margin-top:15px;">
+            <span style="font-size:18px;color:black;">  <img src="/static/images/icons8-card-verification-value-64.png" style="width:30px;margin-right:10px;" alt=""> state</span>
+          </div>
+          <div class="col-md-9">
+            <span>
+                <input type="text"  ng-model="clinic.state"  class="form-control darkInput">
+            </span>
+          </div>
+        </div>
+        <div class="row" style="padding:20px;">
+          <div class="col-md-3"style="margin-top:15px;">
+            <span style="font-size:18px;color:black;">  <img src="/static/images/icons8-card-verification-value-64.png" style="width:30px;margin-right:10px;" alt=""> gst</span>
+          </div>
+          <div class="col-md-9">
+            <span>
+                <input type="text"  ng-model="clinic.gstin"  class="form-control darkInput">
+            </span>
+          </div>
+        </div>
+        <div class="row" style="padding:20px;">
+          <div class="col-md-3"style="margin-top:15px;">
+            <span style="font-size:18px;color:black;">  <img src="/static/images/icons8-card-verification-value-64.png" style="width:30px;margin-right:10px;" alt="">Primary Number</span>
+          </div>
+          <div class="col-md-9">
+            <span>
+                <input type="text"  ng-model="clinic.firstEmergencyContactNo"  class="form-control darkInput">
+            </span>
+          </div>
+        </div>
+        <div class="row" style="padding:20px;">
+          <div class="col-md-3"style="margin-top:15px;">
+            <span style="font-size:18px;color:black;">  <img src="/static/images/icons8-card-verification-value-64.png" style="width:30px;margin-right:10px;" alt="">Secondary Number</span>
+          </div>
+          <div class="col-md-9">
+            <span>
+                <input type="text" ng-model="clinic.secondEmergencyContactNo"  class="form-control darkInput">
+            </span>
+          </div>
+        </div>
+        <div ng-if="clinic.validate_timings.length > 0">
+
+        <div class="row" style="padding:20px;">
+          <div class="col-md-12"style="margin-top:15px;">
+            <h1 class="text-center">Clinic Timings</h1>
+          </div>
+          <div class="col-md-12">
+          <div class="row" >
+            <div class="col-md-3">
+              <h2>Day</h2>
+            </div>
+            <div class="col-md-offset-1 col-md-3 ">
+              <h3>Starting time</h3>
+            </div>
+
+            <div class="col-md-3">
+              <h3>ending time</h3>
+            </div>
+
+
+            </div>
+
+          </div>
+          <div class="col-md-12">
+          <div class="row" ng-repeat="timings in clinic.validate_timings track by $index">
+            <div class="col-md-3">
+              <h2>{{timings.day}}:</h2>
+            </div>
+            <div class="col-md-offset-1 col-md-3 ">
+              <h3>{{timings.startingtime}}</h3>
+            </div>
+
+            <div class="col-md-3">
+              <h3>{{timings.endingtime}}</h3>
+            </div>
+
+
+            </div>
+
+          </div>
+
+          </div>
+
+          </div>
+        </div>
+        <br>
+        <br>
+        <div class="row" style="padding:20px;">
+          <div class="col-md-3">
+            <span style="font-size:18px;color:black;">  <img src="/static/images/icons8-add-user-male-128.png" style="width:30px;margin-right:10px;" alt="">Add Doctors</span>
+          </div>
+          <div class="col-md-9">
+            <div class="col-md-6"  style="margin-bottom:20px;" ng-repeat="doctor in doctors">
+              <div class="container-fluid"  style="box-shadow:5px 10px 20px #e3e3e3;height:150px;padding:15px;background:white;border-radius:10px;">
+                <div class="row">
+                    <div class="col-md-4" ng-if="doctor.doctor.profile.displayPicture">
+                      <img  style="width:100%;height:130px;border-radius:50%" src="{{doctor.doctor.profile.displayPicture}}" >
+
+                    </div>
+                    <div class="col-md-4" ng-if="!doctor.doctor.profile.displayPicture">
+                      <img  style="width:100%;height:130px;border-radius:50%" src='/static/images/img_avatar_card.png' >
+
+                    </div>
+                    <div class="col-md-8">
+                    <h4 style="font-weight:600">{{doctor.doctor.profile.name}}</h4>
+                    <h5>{{doctor.doctor.username}}</h5>
+                    <h5>{{doctor.doctor.profile.specialization}}</h5>
+                    <button type="button" class="btn btn-outline-dark btn-block darkButton" name="button" ng-click="editEmployee('doctor',doctor.id)" style="margin-bottom:10px;!important;border-color:black !important;color:black !important;background-color:white !important;margin-top:5px;" ng-click="updateClinic()">View Profile</button>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-md-2 text-center" ng-click="addEmployee('doctor')">
+              <div class="" style="box-shadow:5px 10px 20px #e3e3e3;height:150px;padding-top:40px;padding-right:8px;background:white;border-radius:10px;" >
+                <i class = "fa fa-plus " style="font-size:20px;"></i> <br><br>
+                <p style="margin-left:10px">Add New</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="padding:20px;">
+          <div class="col-md-3">
+            <span style="font-size:18px;color:black;">  <img src="/static/images/icons8-customer-support-50.png" style="width:30px;margin-right:10px;" alt="">Add Workers</span>
+          </div>
+          <div class="col-md-9">
+            <div class="col-md-6"  style="margin-bottom:20px;" ng-repeat="employee in workers">
+              <div class="container-fluid"  style="box-shadow:5px 10px 20px #e3e3e3;height:150px;padding:15px;background:white;border-radius:10px;">
+                <div class="row">
+                  <div class="col-md-4" ng-if="employee.user.profile.displayPicture">
+                    <img  style="width:100%;height:130px;border-radius:50%" src="{{employee.user.profile.displayPicture}}" >
+
+                  </div>
+                  <div class="col-md-4" ng-if="!employee.user.profile.displayPicture">
+                    <img  style="width:100%;height:130px;border-radius:50%" src='/static/images/img_avatar_card.png' >
+
+                  </div>
+                  <div class="col-md-8">
+                    <h4 style="font-weight:600">{{employee.user.profile.name}}</h4>
+                    <h5>{{employee.user.username}}</h5>
+                    <h5>{{employee.fromTimeStr}} to {{employee.toTimeStr}}</h5>
+                    <button type="button" class="btn btn-outline-dark btn-block darkButton" name="button" ng-click="editEmployee('employee',employee.id)"style="margin-bottom:10px;!important;border-color:black !important;color:black !important;background-color:white !important;margin-top:5px;" ng-click="updateClinic()">View Profile</button>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2 text-center" ng-click="addEmployee('employee')">
+              <div class="" style="box-shadow:5px 10px 20px #e3e3e3;height:150px;padding-top:40px;padding-right:8px;background:white;border-radius:10px;" >
+                <i class = "fa fa-plus " style="font-size:20px;"></i> <br><br>
+                <p style="margin-left:10px">Add New</p>
+              </div>
+            </div>
+          </div>
+        </div>
+            <!-- <div class="row text-center">
+              <div class="col-md-offset-3 col-md-6">
+                <button type="button" class="btn btn-outline-dark btn-block darkButton" name="button" ng-click="saveInvoice()" style="margin-bottom:10px;!important;border-color:black !important;color:black !important;background-color:white !important;" ng-click="updateClinic()">Update Clinic</button>
+              </div>
+            </div> -->
+
+      </div>
+    </div>
+  </div>

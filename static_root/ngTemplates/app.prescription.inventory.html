@@ -1,0 +1,307 @@
+<style media="screen">
+  .active {
+    color: white;
+    font-weight: 700
+  }
+
+  .pagination>li>a,
+  .pagination>.active>a:hover {
+    border: none !important;
+    color: black !important;
+    /* font-weight:700; */
+    background-color: transparent !important;
+    font-size: 14px;
+  }
+
+  .pagination>.active>a {
+    background-color: transparent !important;
+    outline: black;
+    color: black !important;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .table tr,
+  th,
+  td {
+    border: none !important;
+
+  }
+
+  table {
+    border: none !important;
+  }
+
+  table tr:last-child td:last-child {
+    border-bottom-right-radius: 10px !important;
+  }
+
+  .inputStyle {
+    background:
+      black;
+    border: 1px solid white !important;
+    font-size: 18px;
+    color: white;
+  }
+
+  .btnStyle {
+    background:
+      rgb(73, 74, 74) !important;
+    color:
+      white !important;
+    border-radius: 5px !important;
+  }
+
+  .popover-title {
+    color: black
+  }
+
+  .popover {
+    color: black
+  }
+
+  .defaultBtn {
+    background: #2b2929;
+    outline: none !important;
+    /* border: 1px solid #808080; */
+    /* border-radius:5px !important; */
+    font-size: 16px;
+    color: #ffffff !important;
+    margin-left: 20px !important;
+  }
+
+  .grayBtn {
+    background: #333333;
+    border: 1px solid #000000;
+    border-radius: 5px !important;
+    font-size: 16px;
+    color: #ffffff !important;
+    outline: none !important;
+  }
+
+  .dimgrayBtn{
+    background: #555555;
+    border: 1px solid #000000;
+    border-radius: 5px !important;
+    font-size: 16px;
+    color: #ffffff !important;
+    outline: none !important;
+  }
+
+  .fa-caret-down {
+    position: absolute;
+    padding: 10px;
+    right: 15px;
+    z-index: 1
+  }
+  .activeMenu {
+    background: #757575 !important;
+  }
+  .menuItemss:hover {
+    background: #000;
+    /* border-right: solid 4px red !important; */
+  }
+</style>
+<div class="container-fluid" ng-if="!promotion">
+  <div class="row text-center">
+    <h3> INVENTORY </h3>
+  </div>
+<div class="row" style="margin:10px">
+    <div class="row">
+      <div class="col-md-offset-1 col-md-3" style="position:relative;">
+        <input type="text" class="form-control" placeholder="Search with name" ng-model="selectedClinic.search" style="background:#f1f1f1;color:black;border-radius:10px;padding:23px; border:none !important;" ng-enter="allAppointments('search')">
+        <button style="position: absolute;top: 7px;right: 25px;background:#f1f1f1;border: none !important;color: black;" class="btn btn-default" type="submit" ng-click="allAppointments('search')">
+          <i class="glyphicon glyphicon-search"></i>
+        </button>
+      </div>
+      <div class="col-md-2">
+        <span>
+          <select class="form-control " ng-model="selectedClinic.obj"  ng-change="changeClinic()" ng-options="i as i.name for i in ownedClinics" style="border-radius:5px !important;border:none !important;height:40px;background:#f1f1f1;color:black;">
+          </select>
+        </span>
+      </div>
+      <!-- <div class="col-md-1">
+        <button type="button" class="btn btn-primary btn-block" style="background:#f1f1f1;color:black;border-radius:10px !important;padding:12px; border:none !important;outline:0" ng-click="previous()">Prev</button>
+      </div>
+      <div class="col-md-1">
+        <button type="button" class="btn btn-primary btn-block" style="background:#f1f1f1;color:black;border-radius:10px !important;padding:12px; border:none !important;outline:0" ng-click="next()">Next</button>
+      </div> -->
+      <!-- <div class="col-md-2 pull-right">
+        <span>
+          <select class="form-control " ng-model="selectedClinic.obj"  ng-change="allAppointments('a')" ng-options="i as i.name for i in ownedClinics" style="border-radius:5px !important;border:none !important;height:40px;background:#f1f1f1;color:black;">
+          </select>
+        </span>
+      </div> -->
+
+      <div class="col-md-2 pull-right">
+        <button type="button" class="btn btn-default " style="background: #082ed0;color: white;border : none !important;border-radius:10px !important;padding: 15px;width: 88%;left: 25px;font-size:16px;" ng-click="orderState('normal')">
+            Create New Orders <img src="/static/images/icons8-plus-48.png" style="width:25px;margin-left:10px;" alt="">
+          </button>
+      </div>
+      <!-- <div class="col-md-2 pull-right">
+        <button type="button" class="btn btn-default " style="background: #082ed0;color: white;border : none !important;border-radius:10px !important;padding: 15px;width: 88%;left: 25px;font-size:16px;" ng-click="orderState('edit')">
+            Add PurchaseOrder <img src="/static/images/icons8-plus-48.png" style="width:25px;margin-left:10px;" alt="">
+          </button>
+      </div> -->
+      <div class="col-md-2 pull-right">
+        <button type="button" class="btn btn-default " style="background: #082ed0;color: white;border : none !important;border-radius:10px !important;padding: 15px;width: 88%;left: 25px;font-size:16px;" ng-click="addBill()">
+            Create New Bill <img src="/static/images/icons8-plus-48.png" style="width:25px;margin-left:10px;" alt="">
+          </button>
+      </div>
+    </div>
+
+
+
+
+
+
+  <div class="row" style="margin-top:20px">
+    <div class="col-md-2 col-md-offset-2">
+      <button class="btn btn-default btn-block  {{itemList? 'activeMenu' : ''}}" style="background:#f1f1f1;color:black;border:1px solid white;height:35px !important;border-radius:5px !important;" ng-click="changeState('itemList')"> ITEM LIST </button>
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-default btn-block  {{orders? 'activeMenu' : ''}}" style="background:#f1f1f1;color:black;border:1px solid white;height:35px !important;border-radius:5px !important;" ng-click="changeState('orders')">ORDERS</button>
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-default btn-block  {{loss? 'activeMenu' : ''}}" style="background:#f1f1f1;color:black;border:1px solid white;height:35px !important;border-radius:5px !important;" ng-click="changeState('loss')">SOLD</button>
+    </div>
+  </div>
+  <div ng-if="itemList">
+
+  <div class="row" style="margin:5px;" >
+    <div class="col-md-12">
+      <div class="row" style="margin-top:10px">
+        <div class="col-md-offset-1 col-md-10" style="background:#f1f1f1" style="border-radius:20px !important">
+          <div class="row" style="padding-top:15px;padding-bottom:15px">
+            <div class="col-md-8" style="color:white;border-radius:5px;margin-left:10px;">
+              <input type="text" class="form-control" ng-model="categoryForm.title" placeholder="ENTER Category" style="background:white;color:black;border" uib-typeahead="s as s.title  + ' (' + s.ref_title +') ' for s in searchmainSubjects($viewValue)">
+            </div>
+            <div class="col-md-3">
+              <button class="btn btn-default btn-block" style="background:#f1f1f1;color:#black;border:1px solid black;height:35px !important;border-radius:5px !important;" ng-click="addCategory()"> ADD </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1" style="margin-top:0px;padding:0px;border-radius:0px 0px 10px 10px !important;color:white;">
+          <table class="table text-center">
+            <thead style="border-radius: 20px !important;color:black">
+              <tr>
+                <th class="text-center">#</th>
+                <th class="text-center">Category</th>
+
+                <th class="text-center">ACTION</th>
+                <th class="text-center"></th>
+              </tr>
+            </thead>
+            <tbody style="background:white;border-radius: 20px !important;color:black">
+              <tr ng-repeat="item in allItems track by $index">
+                <td>{{$index + 1}}</td>
+                <td>{{item.title}} </td>
+
+                <td  style="text-decoration:underline;" ng-click="itemView(item.id)">VIEW</td>
+                <td><i class="fa fa-times pull-right"  style="color:red;" aria-hidden="true" mwl-confirm title="Approve" message="Are you sure?" confirm-text="Yes <i class='fa fa-check'></i>" cancel-text="No" on-confirm="deleteCategory(item.id)" confirm-button-type="default"
+                  cancel-button-type="default" ></i></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </div>
+      </div>
+      <div class="row text-center">
+        <div class="col-md-offset-4 col-md-4 col-md-offset-4">
+          <ul uib-pagination boundary-links="false" total-items="total" items-per-page="limit" max-size="3" ng-model="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+            ng-change="pageChanged(currentPage)"></ul>
+        </div>
+      </div>
+      </div>
+      <div ng-if="orders">
+        <div class="row" style="margin-top:30px;">
+          <div class="col-md-10 col-md-offset-1" style="margin-top:0px;padding:0px;border-radius:0px 0px 10px 10px !important;color:white;">
+            <table class="table text-center">
+              <thead style="border-radius: 20px !important;color:black;background:#f1f1f1;">
+                <tr>
+                  <th class="text-center">#</th>
+                  <th class="text-center">Arriving Date</th>
+                  <th class="text-center">Distrubutor Name</th>
+                  <th class="text-center">Mobile No</th>
+                  <th class="text-center">Discount</th>
+                  <th class="text-center">Status</th>
+                  <th class="text-center">ACTION</th>
+                  <th class="text-center"></th>
+                  <th class="text-center"></th>
+                </tr>
+              </thead>
+              <tbody style="background:white;border-radius: 20px !important;color:black">
+                <tr ng-repeat="order in orderss track by $index">
+                <tr ng-repeat="order in orderss">
+                  <td>{{$index + 1}}</td>
+                  <td>{{order.expected_arriving | date}}</td>
+                  <td>{{order.from_contact}} </td>
+                  <td>{{order.from_contactNo}} </td>
+                  <td>{{order.discount}} </td>
+                  <td>{{order.amount}} </td>
+                  <td ng-if="order.status=='Pending'" style="color:orange">{{order.status}} </td>
+                  <td ng-if="order.status=='Received'" style="color:green">{{order.status}} </td>
+                  <td ng-if="order.status=='Distrubutor Cancelled'||order.status=='Cancelled'" style="color:red">{{order.status}} </td>
+                  <td ng-if="order.status!='Received'" ng-click="editOrders(order)"  style="text-decoration:underline;">Edit</td>
+                  <td ng-if="order.status=='Received'" ng-click="editOrders(order)"  style="text-decoration:underline;">{{order.abi}}</td>
+                  <td  ng-click="showOrderItems(order)"  style="text-decoration:underline;">View</td>
+                  <td><i class="fa fa-times"  style="color:red;" aria-hidden="true" mwl-confirm title="Approve" message="Are you sure?" confirm-text="Yes <i class='fa fa-check'></i>" cancel-text="No" on-confirm="deleteOrder(order.id)" confirm-button-type="default"
+                    cancel-button-type="default" ></i></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="row text-center">
+            <div class="col-md-offset-4 col-md-4 col-md-offset-4">
+              <ul uib-pagination boundary-links="false" total-items="totall" items-per-page="limit" max-size="3" ng-model="currentPagee" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                ng-change="pageChangedd(currentPagee)"></ul>
+            </div>
+          </div>
+          </div>
+        </div>
+
+
+      </div>
+      <div ng-if="loss">
+      <div class="row" style="margin-top:30px;">
+        <div class="col-md-10 col-md-offset-1" style="margin-top:0px;padding:0px;border-radius:0px 0px 10px 10px !important;color:white;">
+          <table class="table text-center">
+            <thead style="border-radius: 20px !important;color:black;background:#f1f1f1;">
+              <tr>
+                <th class="text-center">#</th>
+                <th class="text-center">Customer Name</th>
+                <th class="text-center">Customer Mobile</th>
+                <th class="text-center">Date</th>
+                <th class="text-center">Amount</th>
+                <th class="text-center">Discount</th>
+                <th class="text-center">ItemCount</th>
+                <th class="text-center">ACTION</th>
+                <th class="text-center"></th>
+              </tr>
+            </thead>
+            <tbody style="background:white;border-radius: 20px !important;color:black">
+              <tr ng-repeat="item in solds track by $index">
+                <td>{{$index + 1}}</td>
+                <td>{{item.contact_details}}</td>
+                <td>{{item.contact_no}}</td>
+                <td>{{item.date| date}}</td>
+                <td>{{item.total}} </td>
+                <td>{{item.discount}} </td>
+                <td>{{item.items.length}} </td>
+                <td ng-click="showBill(item)" style="text-decoration:underline;">VIEW</td>
+                <td><i class="fa fa-times pull-right"  style="color:red;" aria-hidden="true" mwl-confirm title="Approve" message="Are you sure?" confirm-text="Yes <i class='fa fa-check'></i>" cancel-text="No" on-confirm="soldDelete(item.id)" confirm-button-type="default"
+                  cancel-button-type="default" ></i></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="row text-center">
+          <div class="col-md-offset-4 col-md-4 col-md-offset-4">
+            <ul uib-pagination boundary-links="false" total-items="totalll" items-per-page="limit" max-size="3" ng-model="currentPageee" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+              ng-change="pageChangeddd(currentPageee)"></ul>
+          </div>
+        </div>
+      </div>

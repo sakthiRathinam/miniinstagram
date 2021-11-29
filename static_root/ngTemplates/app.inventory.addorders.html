@@ -1,0 +1,217 @@
+<style>
+  .productForm {
+    padding:10px;
+    border:1px solid #d3d3d3;
+    border-radius:10px;
+    font-size:15px;
+    background:#F9F9F9;
+  }
+  .dateField {
+    padding:10px;
+    border:1px solid #d3d3d3;
+    border-top-left-radius: 10px;
+    margin-bottom:15px;
+    font-size:14px;
+    border-bottom-left-radius: 10px;
+    background-color:#F9F9F9;
+  }
+
+  .dateButton {
+    padding: 6px;
+    border:1px solid #d3d3d3;
+    border-bottom-right-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+    background-color:#F9F9F9;
+  }
+
+  .dropdownIcon {
+    position: absolute;
+    right: 20px;
+    padding: 8px;
+    color: grey;
+  }
+
+</style>
+
+
+<div class="modal-body" style="background:white;padding: 40px;">
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3 class="text-center" style="font-weight:bold;color:black;">Create Order </h3>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Contact no*</label>
+            <input type="text" class="form-control productForm"  ng-model="form.from_contactNo" placeholder="">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Customer Name*</label>
+            <input type="text" class="form-control productForm" ng-model="form.from_contact" placeholder="">
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Amount</label>
+            <input type="number" class="form-control productForm" ng-model="form.amount" placeholder="" >
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Status</label>
+            <br>
+            <span class="dropdownIcon"> <i class="fa fa-caret-down"></i></span>
+            <select class="form-control productForm" ng-model="form.status" ng-options="a for a in status" style="padding:5px;">
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Order Details*</label>
+            <textarea name="" style="width:100%"  ng-model="form.order_details" class="productForm"></textarea>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>EWxpected Arriving</label>
+            <div class="input-group">
+              <input type="text" class="form-control dateField" ng-model="form.expected_arriving" placeholder="" show-weeks="false" uib-datepicker-popup="dd-MMMM-yyyy" is-open="statusEnd.opened" ng-init="today">
+              <span class="input-group-btn" >
+                <button type="button" class="btn btn-default dateButton" ng-click="statusEnd.opened = true;"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Discount(OPTIONAL)</label>
+            <input type="number" class="form-control productForm" ng-model="form.discount" placeholder="" >
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+
+          <h3>This will Create an order based on the minimum quantity for medicines set by you</h3>
+        </div>
+        <div class="col-md-2">
+
+          <button class="btn btn-primary btn-block"  aria-hidden="true" mwl-confirm title="Approve" message="It will add all the items lesser than minimum quantity Are you sure?" confirm-text="Yes <i class='fa fa-check'></i>" cancel-text="No" on-confirm="changeOrderItems()" confirm-button-type="default"
+            cancel-button-type="default"  style="background:#2471a3;color: white;border: none !important;border-radius:10px !important;padding: 10px;font-size: 16px;margin-top:15px;"> Create Sold Order</button>
+        </div>
+      </div>
+
+      <!-- <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Warranty Status*</label>
+            <br>
+            <span class="dropdownIcon"> <i class="fa fa-caret-down"></i></span>
+            <select class="form-control productForm" ng-model="form.warrantyStatus" ng-options="a for a in warrantyTypes" style="padding:5px;">
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6" ng-if="form.warrantyStatus == 'Out of Warranty'">
+          <div class="form-group">
+            <label>Amount*</label>
+            <input type="text" class="form-control productForm" ng-model="form.amount" placeholder="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <div class="row" style="margin-top:20px;">
+      <div class="col-md-12" ng-if="form.orderitems.length > 0"style="margin-top:10px;padding:0px;border-radius:0px 0px 10px 10px !important;color:white;">
+        <table class="table text-center">
+          <thead style="border-radius: 20px !important;color:black;">
+            <tr>
+              <th class="text-center">#</th>
+              <th class="text-center">Name</th>
+              <th class="text-center">Type</th>
+              <th class="text-center">No of Boxes</th>
+              <th class="text-center">No of Strips</th>
+              <th class="text-center">No of Pieces</th>
+              <th class="text-center">Total Quantity</th>
+
+              <th class="text-center">ACTION</th>
+              <th class="text-center"></th>
+            </tr>
+          </thead>
+          <tbody style="background:white;border-radius: 20px !important;color:black">
+            <tr ng-repeat="item in form.orderitems track by $index">
+
+              <td>{{$index + 1}}</td>
+              <td>{{item.medicine.title}} </td>
+              <td>{{item.medicine.type}} </td>
+              <td>{{item.required_boxes}} </td>
+              <td ng-if="m.medicine.type=='Tablet'||m.medicine.type=='Capsules'">{{item.required_strips}} </td>
+              <td ng-if="m.medicine.type!='Tablet'&&m.medicine.type!='Capsules'">None</td>
+              <td>{{item.required_pieces}} </td>
+              <td>{{item.quantity}} </td>
+              <td><i class="fa fa-edit"  style="color:blue;" aria-hidden="true" mwl-confirm title="Approve" message="Are you sure you want to edit this?" confirm-text="Yes <i class='fa fa-check'></i>" cancel-text="No" on-confirm="addMedicine('edit',item,$index)" confirm-button-type="default"
+                cancel-button-type="default" ></i></td>
+              <td><i class="fa fa-times"  style="color:red;" aria-hidden="true" mwl-confirm title="Approve" message="Are you sure you want to delete this?" confirm-text="Yes <i class='fa fa-check'></i>" cancel-text="No" on-confirm="deleteItem($index)" confirm-button-type="default"
+                cancel-button-type="default" ></i></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- <div class="col-md-6" ng-repeat="m in form.orderitems track by $index" style="margin-bottom:20px;">
+        <div class="container-fluid"  style="box-shadow:5px 10px 20px #e3e3e3;height:170px;padding:15px;background:white;border-radius:10px;">
+          <div class="row">
+            <div class="col-md-10">
+              <h5 style="font-weight:600" style="margin:0px !important;padding:0px !important;">{{m.medicine.title}}</h5>
+              <b>{{m.medicine.type}}</b> <br>
+              <b>Total Boxes : {{m.required_boxes}} ,</b><b ng-if="m.medicine.type=='Tablet'||m.medicine.type=='Capsules'">Total Strips  : {{m.required_strips}}  ,</b><b>Total Pieces : {{m.required_pieces}}</b><br>
+              <b>Total Quantity : {{m.quantity}}</b>
+               <div class="row" style="margin:5px">
+                 <div class="col-md-6">
+                   <button class="btn btn-primary btn-block" ng-click="addMedicine('edit',m,$index)" style="background:#2471a3;color: white;border: none !important;border-radius: 14px !important;padding: 10px;font-size: 16px;"> edit</button>
+
+                 </div>
+                 <div class="col-md-6" style="margin-bottom:30px;">
+                   <button class="btn btn-primary btn-block" ng-click="deleteItem($index)" style="background:#2471a3;color: white;border: none !important;border-radius: 14px !important;padding: 10px;font-size: 16px;"> delete</button>
+
+                 </div>
+               </div>
+            </div>
+            <div class="col-md-2">
+              <img  src="/static/images/handpill.png" style="width:100%;height:150px;">
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <div class="col-md-2 text-center" ng-click="addMedicine('item','add','empty')">
+        <div class="" style="box-shadow:5px 10px 20px #e3e3e3;height:170px;padding-top:40px;padding-right:8px;background:white;border-radius:10px;" >
+          <i class = "fa fa-plus " style="font-size:20px;"></i> <br><br>
+          <p style="margin-left:10px">Add New Medicine</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row text-center" style="margin-top:30px;" >
+    <button class="btn btn-primary" ng-click="postOrder()" style="background:#2471a3;color: white;border: none !important;border-radius: 64px !important;padding: 10px;width: 112px;font-size: 16px;"> Add</button>
+  </div>
+
+
+</div>

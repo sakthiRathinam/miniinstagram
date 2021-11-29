@@ -1,0 +1,58 @@
+<style>
+  .productForm {
+    padding:10px;
+    border:1px solid #d3d3d3;
+    border-radius:10px;
+    font-size:15px;
+    background:#F9F9F9;
+  }
+</style>
+
+
+<div class="modal-body" style="background: #F3F3F3;padding: 40px;">
+  <div class="row pull-right" style="cursor:pointer !important;">
+    <div class="col-md-12">
+      <div style="cursor:pointer !important;" ng-click="close();"><i class="fa fa-close"></i></div>
+    </div>
+  </div>
+  <div class="row" style="margin-top:50px;">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="col-md-4">
+        <div>
+          <label>Status</label>
+        </div>
+        <br>
+        <div>
+          <label>Accepted Date</label>
+        </div>
+        <br>
+        <div>
+          <label>Accepted Time</label>
+        </div>
+        <br>
+
+      </div>
+      <div class="col-md-8">
+        <div>
+          <select class="form-control productForm" ng-model="form.status" ng-options="a for a in contractStatus" style="padding:5px;">
+          </select>
+        </div>
+        <br>
+        <div>
+          <div class="input-group">
+            <input type="text" class="form-control dateField" ng-model="form.accepteddate" placeholder="" show-weeks="false" uib-datepicker-popup="dd-MMMM-yyyy" is-open="statusEnd3.opened" ng-init="today">
+            <span class="input-group-btn" >
+              <button type="button" class="btn btn-default dateButton" ng-click="statusEnd3.opened = true;"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+          </div>
+        </div>
+        <br>
+          <div>
+            <input class="form-control productForm"  type='text' ng-model="form.acceptedtime"  style="padding:5px;">
+          </div>
+        <br>
+
+  <div class="row" style="margin-top:50px;">
+    <div class="text-center"><button class="btn btn-primary" ng-click="updateAppointmens()" style="background: rgb(14, 67, 136);color: white;border: none !important;border-radius: 10px !important;padding: 10px;width: 112px;font-size: 16px;">Update</div>
+  </div>
+</div>

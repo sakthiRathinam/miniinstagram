@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="svg2"
+   width="42.632809"
+   height="37.408199"
+   viewBox="0 0 42.632809 37.408199"
+   sodipodi:docname="off.svg"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)">
+  <metadata
+     id="metadata8">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs6" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     id="namedview4"
+     showgrid="false"
+     inkscape:zoom="4.17193"
+     inkscape:cx="28.878284"
+     inkscape:cy="1.7201502"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2"
+     inkscape:pagecheckerboard="true" />
+  <g
+     id="g880"
+     transform="matrix(0.9614817,0,0,0.9614817,1.1351886,1.0864317)">
+    <g
+       id="g868">
+      <path
+         transform="matrix(0.99131126,-0.13153699,0.14301079,0.98972113,0,0)"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.0000335;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         d="M 3.5914613,13.637871 24.31668,13.509416 c 0,0 7.430433,6.101356 7.372279,7.278795 0.164329,1.44781 -7.372279,7.538158 -7.372279,7.538158 L 3.5914613,28.454824 C 2.493743,28.461628 1.6101245,27.571148 1.6101245,26.473488 v -10.85428 c 0,-1.097661 0.8836185,-1.974533 1.9813368,-1.981337 z"
+         id="rect856"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="scccssss" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 30.508475,16.942098 c 2.360698,-0.08077 8.393857,-4.810082 7.584745,-7.2457631 -0.888061,-2.6733462 -6.840725,2.4286531 -5.885131,4.5762711"
+         id="path861"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="csc" />
+      <circle
+         id="path863"
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none"
+         cx="30.508474"
+         cy="16.942099"
+         r="0.90677965" />
+    </g>
+    <text
+       transform="matrix(0.99028093,-0.19790711,0.13908157,0.98201908,0,0)"
+       id="text872"
+       y="25.798965"
+       x="3.4638133"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.88012409px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.475721"
+       xml:space="preserve"><tspan
+         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic';stroke-width:0.475721"
+         y="25.798965"
+         x="3.4638133"
+         id="tspan870"
+         sodipodi:role="line">OFF</tspan></text>
+  </g>
+</svg>
