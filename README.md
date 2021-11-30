@@ -115,17 +115,19 @@ _Below is an example of how you can instruct your audience on installing and set
 3. Install python packages
     ```sh
 `    poetry install
+    ```
 4. Change the environment variables in settings.py and urls.py in coresingle
      ```sh
 `    change environment varialbles to normal variables
-``
+``  ```
 5. open venv
      ```sh
      poetry shell
+     ```
 6. start the server
      ```sh
     python manage.py runserver 0.0.0.0:8000
-
+    ```
 
 8. Running with docker
 9. Clone the repo
