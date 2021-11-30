@@ -18,13 +18,13 @@ from django.urls import path,include
 from django.conf import settings as globalSettings
 from django.conf.urls.static import static
 from rest_framework_swagger.views import get_swagger_view
-
-schema_view = get_swagger_view(title='Drolls Backend')
 import os
+api_verison = os.environ.get('API_VERSION')
+schema_view = get_swagger_view(title='MiniInstagram Backend')
 urlpatterns = [
     path('docs/', schema_view),
     path('djangoAdmin/', admin.site.urls),
-    path('api/', include('apimanagement.urls')),
+    path(api_verison, include('apimanagement.urls')),
     path('restapi/', include('rest_framework.urls', namespace='rest_framework'))
     # path('admin', home , name ='Organization'),
     # path('', home , name ='Organization'),

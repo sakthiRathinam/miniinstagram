@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "instagram mini"
 version = "0.1.0"
-description = "=assesment project"
+description = "assesment project"
 authors = ["sakthiRatnam <sakthiratnam050@gmail.com>"]
 
 [tool.poetry.dependencies]

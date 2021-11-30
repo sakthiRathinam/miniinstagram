@@ -25,10 +25,8 @@ SECRET_KEY = 'django-insecure-3c_6#8zxlcu4rm^tfi*2qkf=8e%#w5gsv0_c*ywpwpsje664@i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['75418562da71.ngrok.io','allbackend','825e0663040f.ngrok.io','cd2b203ac943.ngrok.io','6c57222d369d.ngrok.io','localhost','0.0.0.0','49da3c98b839.ngrok.io','192.168.29.98','127.0.0.1','4c2f7f61bad2.ngrok.io']
-AUTH_PASSWORD = 'titan@1'
-ECOMMERCE_THEME = '#1A396F' ##631516
-ECOMMERCE_FONT = 'rubik,sans-serif' ##631516 Myriad Pro
+ALLOWED_HOSTS = ['*','localhost','0.0.0.0','192.168.29.98','127.0.0.1','4c2f7f61bad2.ngrok.io']
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -52,7 +50,7 @@ INSTALLED_APPS = [
     'robots',
     'rest_framework',
 ]
-
+# API_VERSION = Os.environ.get('API_VERSION')
 SITE_ID = 1
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -99,23 +97,17 @@ LOGIN_THEME_COLOR = '#ffffff'
 
 SHOW_COMMON_APPS = False
 
-LOGIN_URL = 'login' # this can be 'login' or 'account_login'
-REGISTER_URL = 'register' # this can be 'register' or 'account_signup'
+# LOGIN_URL = 'login' # this can be 'login' or 'account_login'
+# REGISTER_URL = 'register' # this can be 'register' or 'account_signup'
 
-LOGIN_TEMPLATE = 'login.html'
+# LOGIN_TEMPLATE = 'login.html'
 
 SECRET_KEY = 'apfwdssalfeag7)cp4jve5gfb%l8wbn4cyvym(tez^m@z1o#3f'
 
-WAMP_SERVER = 'ws.syrow.com:8090'
-USE_CDN = False
 
-SMART_REGISTRATION = True
-AUTO_ACTIVE_ON_REGISTER = False
 # GEOS_LIBRARY_PATH = '/opt/bitnami/postgresql/lib/libgeos_c.so'
 #   GDAL_LIBRARY_PATH = '/opt/bitnami/postgresql/lib/libgdal.so'
 #   GDAL_DATA = '/opt/bitnami/postgresql/share/gdal'
-INVOICE_NUM_PREFIX = 'BNI-INDIA'
-INITIAL_INV_NO = 100
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -125,16 +117,7 @@ INITIAL_INV_NO = 100
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'clean_single',
-#         'USER': 'root',
-#         'PASSWORD': 'newpassword',
-#         'HOST': '127.0.0.1',   # Or an IP Address that your DB is hosted on
-#         'PORT': '3306',
-#     }
-# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
