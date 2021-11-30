@@ -79,6 +79,7 @@ This section should list any major frameworks/libraries used to bootstrap your p
 * [Docker](https://docker.org/)["production ready container always easy switch to any machines"]
 * [Django Rest Swagger](https://angular.io/)["auto documenting the apis for frontend engineers"]
 * [Github Actions](https://actions.dev/)['added action that will deploy the app to cloud for every new release']
+* [Documentation Url](https://actions.dev/)['localhost or ip:8001/docs/']
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
