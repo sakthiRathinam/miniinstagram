@@ -1,0 +1,37 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    tags: 
+      - 'v[0-9]+.[0-9]+.[0-9]+*'
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - name: DockerBuild
+        env:
+          DOCKER_HUB: ${{ secrets.DOCKER_HUB }}
+          DOCKER_ACCESS: ${{ secrets.DOCKER_ACCESS }}
+          RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
+        run: |
+          ls -l
+          echo 'Docker Login'
+          docker login -u $DOCKER_HUB -p $DOCKER_ACCESS
+          echo 'Running build'
+          echo $RELEASE_VERSION
+          docker build . -t sakthiratnam/instagrammini:latest
+          echo 'pushing image'
+          docker push sakthiratnam/instagrammini:latest
+          echo 'done'
