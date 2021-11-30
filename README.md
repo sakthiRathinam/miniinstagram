@@ -107,41 +107,41 @@ This is an example of how to list things you need to use the software and how to
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. Running with poetry
-2. Clone the repo
+* Running with poetry
+* Clone the repo
    ```sh
    git clone https://github.com/sakthiRathinam/miniinstagram
    ```
-3. Install python packages
+* Install python packages
     ```sh
 `    poetry install
     ```
-4. Change the environment variables in settings.py and urls.py in coresingle
+* Change the environment variables in settings.py and urls.py in coresingle
      ```sh
 `    change environment varialbles to normal variables
 ``  ```
-5. open venv
+* open venv
      ```sh
      poetry shell
      ```
-6. start the server
+* start the server
      ```sh
     python manage.py runserver 0.0.0.0:8000
     ```
 
-8. Running with docker
-9. Clone the repo
+* Running with docker
+* Clone the repo
    ```sh
    git clone https://github.com/sakthiRathinam/miniinstagram
    ```
-10. Install docker and docker-compose
+* Install docker and docker-compose
 `    
-3. create a docker volume pgdata in local
+* create a docker volume pgdata in local
 `    Create database and create user or use default user postgres
 
-4. change the env key according to you in env folder 
+* change the env key according to you in env folder 
 
-5. fire up the containers BY
+* fire up the containers BY
     ```sh
     docker-compose up
 ``
