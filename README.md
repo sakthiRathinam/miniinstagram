@@ -37,7 +37,7 @@
     Backend apis for my assesmentproject
     <br />
     <br />
-    <p href="<localhost or YourIp>:8000/docs/">View Documentation Apis</p>
+    <p View Documentation of this Apis["<localhost or YourIp>:8001/docs/">]</p>
     ·
     <a href="https://github.com/sakthiRathinam/miniinstagram/issues">Report Bug</a>
     ·
@@ -114,7 +114,7 @@ _Below is an example of how you can instruct your audience on installing and set
    ```
 * Install python packages
     ```sh
-`    poetry install
+`   poetry install
     ```
 * Change the environment variables in settings.py and urls.py in coresingle
      ```sh
