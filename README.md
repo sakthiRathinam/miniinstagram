@@ -94,9 +94,13 @@ To get a local copy up and running follow these simple example steps.
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
-* npm
+* install poetry
   ```sh
-  npm install npm@latest -g
+  pip install poetry
+* install python 3.8
+  ```sh
+  pyenv install python 3.8
+
   ```
 
 ### Installation
@@ -109,22 +113,26 @@ _Below is an example of how you can instruct your audience on installing and set
    git clone https://github.com/sakthiRathinam/miniinstagram
    ```
 3. Install python packages
+    ```sh
 `    poetry install
-3. Change the environment variables in settings.py and urls.py in coresingle
+4. Change the environment variables in settings.py and urls.py in coresingle
+     ```sh
 `    change environment varialbles to normal variables
 ``
-4. open venv
+5. open venv
+     ```sh
      poetry shell
-5. start the server
+6. start the server
+     ```sh
     python manage.py runserver 0.0.0.0:8000
 
 
-6. Running with docker
-7. Clone the repo
-   ```;
+8. Running with docker
+9. Clone the repo
+   ```sh
    git clone https://github.com/sakthiRathinam/miniinstagram
    ```
-8. Install docker and docker-compose
+10. Install docker and docker-compose
 `    
 3. create a docker volume pgdata in local
 `    Create database and create user or use default user postgres
@@ -132,6 +140,7 @@ _Below is an example of how you can instruct your audience on installing and set
 4. change the env key according to you in env folder 
 
 5. fire up the containers BY
+    ```sh
     docker-compose up
 ``
 
