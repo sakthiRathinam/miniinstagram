@@ -37,7 +37,7 @@
     Backend apis for my assesmentproject
     <br />
     <br />
-    <p View Documentation of this Apis["<localhost or YourIp>:8001/docs/">]</p>
+    <p View Documentation of this Apis["localhost or YourIp:8001/docs/">]</p>
     ·
     <a href="https://github.com/sakthiRathinam/miniinstagram/issues">Report Bug</a>
     ·
