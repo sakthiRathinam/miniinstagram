@@ -10,7 +10,8 @@ router.register(r'similarusers' , Similaruser , basename = 'similarusers')
 
 urlpatterns = [
     path('',include(router.urls)),
-    # path('createClinic/',CreateClinic.as_view()),
+    path('createAlbum/',CreateAlbum.as_view()),
+    path('matchUsers/',similar_user_search.as_view()),
     
     
 ]
